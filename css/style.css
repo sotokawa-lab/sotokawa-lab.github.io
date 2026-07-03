@@ -350,6 +350,13 @@ details.archive .news-list { margin-top: 14px; border-top-color: transparent; }
 .profile .role { margin: 8px 0 12px; }
 .profile p { font-size: .88rem; color: var(--ink-2); }
 .profile ul { margin: 10px 0 0 1.2em; font-size: .85rem; color: var(--ink-2); }
+.profile li { margin: 6px 0; line-height: 1.75; }
+.profile h4 {
+  font-family: var(--mono); font-size: .66rem; font-weight: 500;
+  letter-spacing: .22em; color: var(--blue); text-transform: uppercase;
+  margin: 26px 0 2px; display: flex; align-items: center; gap: 12px;
+}
+.profile h4::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
 /* ---------- 記事本文（ガイドページ） ---------- */
 .article { max-width: 780px; }
