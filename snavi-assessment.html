@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DS評価での注意点｜Sナビ活用ガイド｜外川研究室</title>
+<meta name="description" content="HONDAセーフティナビを用いたドライビングシミュレータ評価の判定の読み方と注意点。運転反応検査・危険予測体験・総合学習体験の判定、Michonの階層性モデルとの対応。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">外川研究室<span class="brand-en"> — SOTOKAWA LAB.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#news">News</a></li>
+      <li><a href="index.html#research">Research</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="snavi.html" class="active">S-Navi</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-head">
+  <p class="crumb"><a href="snavi.html">S-Navi Guide</a> / 02</p>
+  <h1>DS評価での注意点</h1>
+  <p class="lede">Sナビの判定はどう出力されているのか。各コースの判定アルゴリズムの性質と、評価として使う際の注意点を解説します。</p>
+  <hr class="road">
+</header>
+
+<main class="section article" style="padding-top:56px;">
+
+  <p>
+    普段の臨床業務では、下記のような印刷されたデータを見ることが多いと思います。
+    ほとんどのセラピストは、このデータのどこに着目すべきか、判定がどのように出力されているかが
+    分からないことがあるのではないでしょうか。本項では、Sナビを用いた評価の判定および出力されるデータについて紹介し、
+    Sナビによるドライビングシミュレータ評価が階層性モデルのどの部分の評価を担っているのかを解説します。
+  </p>
+  <img src="img/snavi-report-sample.png" alt="Sナビから出力される評価データの例" loading="lazy">
+  <p class="caption">FIG. 1 — Sナビから出力される評価データの例</p>
+
+  <h2>運転反応検査の判定</h2>
+  <p>
+    反応検査のABCDE判定は、収集された30〜59歳、同年代健常者との比較結果をもとに判定されます
+    （A：優秀、B：良好、C：普通、D：注意、E：不安）。単純反応・選択反応は、Honda以外のメーカーとも構成が同一です。
+    ハンドル操作検査、注意配分・複数作業検査はメーカーによって構成に差があります。
+    特にSナビのハンドル操作検査は、対象者が車幅感覚をつかみにくいことが多く、
+    高齢の方は順応に時間がかかったり、酔ってしまう問題があります。
+  </p>
+  <p>
+    反応検査の速さをもとにどう判断するかについては——著者の私見ですが——30〜59歳と同年代との比較結果で
+    C：普通以上の判定であれば健常者と同等と考え、反応が遅れるなどのリスクは比較的抑えられていると考えます。
+    ただし注意していただきたいのは、絶対大丈夫というゼロリスクは不可能であり、
+    <strong>どこまでのリスクなら許容できるか</strong>という考え方を持つべきだという点です。
+  </p>
+
+  <h2>危険予測体験の判定</h2>
+  <p>
+    危険予測体験での「事故・危険・注意・安全」という判定は、対象物（車両や歩行者）との距離や走行速度など、
+    設定された閾値内のどのレベルにあるか（どれくらい速度を出したか、どれくらい対象物に近いか）という結果で判定されています。
+    したがって、<strong>対象者がどんな運転行動や判断ミスの文脈で事故に至ったかという過程までは判定していない</strong>点に注意が必要です。
+  </p>
+  <p>
+    このことを考えると、対象者の運転を観察した評価者の主観と、機械的に出力された判定結果に乖離が生じるのは不思議ではありません。
+    つまり、運転行動全体としては歩行者や他車両に注意を向けられない危険な運転をしていても、
+    対象物に衝突せず距離をとって停止できてしまうと、主観とは異なり「安全」と判定されます。
+  </p>
+
+  <h2>総合学習体験の判定</h2>
+  <p>
+    はじめに注意しておきたいのですが、総合学習体験のABCDE判定のアルゴリズムは非常に怪しいものです。
+    例えば「発進停止」という項目の採点は、「急発進、不停止、急停止、駐車の仕方のデータを点数化し、
+    その合計点から5段階評価したもの」（株式会社マネージビジネス：運転能力評価サポートソフト〜補足資料〜 Ver3.002R対応 2015/09/25更新）とされています。
+    しかし同補足資料には、反応検査のような判定の基準となったデータが総合学習体験には掲載されていません。
+  </p>
+  <p>
+    つまり総合学習体験の判定は、<strong>基準となった健常者データが存在せず</strong>、
+    点数化の根拠も、5段階評価の設定も不明な状態です。
+    以上のことから、<strong>総合学習体験のABCDE判定を用いて運転再開可否を判定するような使い方は推奨しません</strong>。
+  </p>
+
+  <h2>環境別走行体験・ロングドライブコースには判定がない</h2>
+  <p>
+    環境別走行体験とロングドライブコースは判定のないコースです。危険予測体験や総合学習体験のように
+    走行後の結果（5段階評価、走行地図）は表示されません。そのため、評価者の主観評価や、
+    発生したイベントに着目した評価が中心となります。特にロングドライブコースは長時間の走行となるため、
+    注意の持続性の側面も併せて評価できます。
+  </p>
+  <p>
+    コースの詳細：環境別走行体験は雨1・夜間1・雪2・高速2の計6コース。視界が悪い状態がメインとなるため、
+    難易度は危険予測体験上級よりも高くなります。ロングドライブコースは通常3・短縮3の計6コースで、
+    難易度は走行コースが長く設定された危険予測体験のイメージです。
+  </p>
+
+  <h2>DSはMichonモデルのどの部分を評価しているか？</h2>
+  <p>
+    自動車運転における運転行動モデルとして、Michonの階層性モデルがよく取り上げられます。
+    このモデルは、運転能力が3つのレベルから構成されることを示しています。
+    Operationalレベルは最も時間の短い下位のレベルで、ハンドル操作やブレーキ操作など、
+    ドライバーが無意識のうちに行っている自動的な運転行動を指すことが多いです。
+    次にTacticalレベルは、車線変更や追い越し、交差点進入時の判断など、状況に応じた運転操作の調整を指します。
+    最上位のStrategicレベルは、経路や移動手段の選択、外出計画など、運転全体に関わる意思決定を指します。
+  </p>
+  <p>下記は、Marshallらのシステマティックレビューにおいて各レベルで求められるComponentをまとめたものです。</p>
+  <img src="img/snavi-michon-components.png" alt="Michon階層性モデルの各レベルで求められるComponent（Marshallらによる）" loading="lazy">
+  <p class="caption">FIG. 2 — Michonモデル各レベルのComponent（Marshall et al.）</p>
+
+  <p style="margin-top:44px;">
+    <a href="snavi-r.html">→ 次：SナビのデータをRで解析</a>
+  </p>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© Sotokawa Lab., Yamagata Prefectural University of Health Sciences</span>
+    <span><a href="snavi.html">S-NAVI GUIDE</a> ・ <a href="index.html">HOME</a></span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
