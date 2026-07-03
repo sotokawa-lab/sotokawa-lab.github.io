@@ -147,10 +147,10 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   position: absolute; right: 24px; top: 50%;
   transform: translateY(-50%);
   writing-mode: vertical-rl;
-  font-family: var(--serif); font-size: .8rem; letter-spacing: .42em;
+  font-family: var(--serif); font-size: .7rem; letter-spacing: .22em;
   color: var(--ink-3);
   border-left: 1px solid var(--line); padding-left: 16px;
-  height: 20em;
+  height: auto; max-height: 76vh;
 }
 @media (max-width: 900px) { .hero-vertical { display: none; } }
 
