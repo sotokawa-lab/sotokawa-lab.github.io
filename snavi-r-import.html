@@ -59,8 +59,8 @@
     ここに下記のコードをコピペし、Sourceボタンをクリックするだけです。
   </p>
 
-  <div class="codeblock">
-    <div class="codeblock-head"><span>read_task_shiya3.R</span><span><a href="r/read_task_shiya3.R" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
+  <div class="codeblock" data-lang="r">
+    <div class="codeblock-head"><span><span class="lang">R</span>read_task_shiya3.R</span><span><a href="r/read_task_shiya3.R" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
     <pre><code>#使用するパッケージは、パッケージのインストールを簡素化するためのpacman、下処理関連のtidyverse、使っているPCのファイル参照関係の問題を解決するためのhereの３つのパッケージである．
 if (!require("pacman")) install.packages("pacman")
 library(pacman)
@@ -117,8 +117,8 @@ dat</code></pre>
   </p>
 
   <h3>単純反応検査</h3>
-  <div class="codeblock">
-    <div class="codeblock-head"><span>read_reaction_simple.R</span><span><a href="r/read_reaction_simple.R" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
+  <div class="codeblock" data-lang="r">
+    <div class="codeblock-head"><span><span class="lang">R</span>read_reaction_simple.R</span><span><a href="r/read_reaction_simple.R" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
     <pre><code>library(tidyverse)
 dat5&lt;-map_dfr(
   list.files(
@@ -142,8 +142,8 @@ colnames(dat5)&lt;-simple_react</code></pre>
   </div>
 
   <h3>選択反応課題</h3>
-  <div class="codeblock">
-    <div class="codeblock-head"><span>read_reaction_selective.R</span><span><a href="r/read_reaction_selective.R" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
+  <div class="codeblock" data-lang="r">
+    <div class="codeblock-head"><span><span class="lang">R</span>read_reaction_selective.R</span><span><a href="r/read_reaction_selective.R" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
     <pre><code>dat6&lt;-map_dfr(
   list.files(
    here("INSPECTIONDATA","反応検査印刷データ"), #反応検査データが格納されているフォルダを指定
@@ -165,8 +165,8 @@ colnames(dat6)&lt;-selective_react</code></pre>
 
   <h3>ハンドル操作課題</h3>
   <p>コードが長いため、全文はダウンロードファイルをご覧ください（構造は他の反応検査と同じで、pattern を「13\\.csv$」に、列名ベクトルをハンドル操作用に変えたものです）。</p>
-  <div class="codeblock">
-    <div class="codeblock-head"><span>read_reaction_steering.R</span><span><a href="r/read_reaction_steering.R" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
+  <div class="codeblock" data-lang="r">
+    <div class="codeblock-head"><span><span class="lang">R</span>read_reaction_steering.R</span><span><a href="r/read_reaction_steering.R" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
     <pre><code>dat7&lt;-map_dfr(
   list.files(
    here("INSPECTIONDATA","反応検査印刷データ"), #反応検査データが格納されているフォルダを指定
@@ -185,8 +185,8 @@ colnames(dat7)&lt;-steering</code></pre>
   </div>
 
   <h3>注意配分・複数作業検査</h3>
-  <div class="codeblock">
-    <div class="codeblock-head"><span>read_reaction_attention.R</span><span><a href="r/read_reaction_attention.R" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
+  <div class="codeblock" data-lang="r">
+    <div class="codeblock-head"><span><span class="lang">R</span>read_reaction_attention.R</span><span><a href="r/read_reaction_attention.R" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
     <pre><code>dat8&lt;-map_dfr(
   list.files(
     here("INSPECTIONDATA","反応検査印刷データ"), #反応検査データが格納されているフォルダを指定
@@ -205,8 +205,8 @@ colnames(dat8)&lt;-attention_divided</code></pre>
   </div>
 
   <h2>総合学習体験</h2>
-  <div class="codeblock">
-    <div class="codeblock-head"><span>read_general_learning.R</span><span><a href="r/read_general_learning.R" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
+  <div class="codeblock" data-lang="r">
+    <div class="codeblock-head"><span><span class="lang">R</span>read_general_learning.R</span><span><a href="r/read_general_learning.R" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
     <pre><code>dat4&lt;-map_dfr(
   list.files(
     here("INSPECTIONDATA","総合学習体験印刷データ"),
@@ -239,8 +239,8 @@ dat4&lt;-dat4 %&gt;% dplyr::select(general_learn)</code></pre>
     <li>自動的に解凍・展開されたフォルダが展開フォルダ内に出力される</li>
     <li>全て展開されたら、展開フォルダ内のzipファイルコピーは削除する（消し忘れるとRでエラーになるため）</li>
   </ol>
-  <div class="codeblock">
-    <div class="codeblock-head"><span>unzip_all.bat</span><span><a href="r/unzip_all.bat" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
+  <div class="codeblock" data-lang="bat">
+    <div class="codeblock-head"><span><span class="lang">BAT</span>unzip_all.bat</span><span><a href="r/unzip_all.bat" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
     <pre><code>@echo off
 :loop
 if "%~1" == "" goto end
@@ -251,8 +251,8 @@ goto loop
   </div>
   <p>参考HP：<a href="https://www.himadara.info/entry/expand_all">複数のzipファイルを一括で展開する方法</a></p>
   <p>すべて展開されればRの出番です。</p>
-  <div class="codeblock">
-    <div class="codeblock-head"><span>read_hazard.R</span><span><a href="r/read_hazard.R" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
+  <div class="codeblock" data-lang="r">
+    <div class="codeblock-head"><span><span class="lang">R</span>read_hazard.R</span><span><a href="r/read_hazard.R" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
     <pre><code>dat2&lt;-map_dfr(
   list.files(
     here("INSPECTIONDATA","危険予測体験/展開"),

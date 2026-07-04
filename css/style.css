@@ -402,25 +402,50 @@ details.archive .news-list { margin-top: 14px; border-top-color: transparent; }
 }
 
 /* ---------- コードブロック ---------- */
-.codeblock { margin: 22px 0 30px; border: 1px solid var(--line); }
+.codeblock {
+  margin: 30px 0 40px;
+  border: 1px solid #26314a; border-radius: 6px; overflow: hidden;
+  box-shadow: 0 10px 26px -18px rgba(18, 48, 99, .5);
+}
 .codeblock-head {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 8px 14px; background: var(--paper-2); border-bottom: 1px solid var(--line);
-  font-family: var(--mono); font-size: .64rem; letter-spacing: .12em; color: var(--ink-2);
+  padding: 9px 14px; background: #1b2438; border-bottom: 1px solid #26314a;
+  font-family: var(--mono); font-size: .66rem; letter-spacing: .12em; color: #9db3d8;
 }
-.codeblock-head a { font-family: var(--mono); }
+.codeblock-head .lang {
+  display: inline-block; background: var(--blue); color: #fff;
+  font-size: .58rem; letter-spacing: .18em; padding: 2px 8px;
+  border-radius: 3px; margin-right: 10px; vertical-align: 1px;
+}
+.codeblock-head a { font-family: var(--mono); color: #9db3d8; }
+.codeblock-head a:hover { color: #fff; }
 .codeblock-head .btn-copy {
-  cursor: pointer; border: 1px solid var(--line); background: #fff;
+  cursor: pointer; border: 1px solid #3a4a6e; background: transparent;
   font-family: var(--mono); font-size: .6rem; letter-spacing: .1em;
-  padding: 3px 10px; color: var(--ink-2);
+  padding: 3px 10px; color: #9db3d8; border-radius: 3px;
 }
-.codeblock-head .btn-copy:hover { border-color: var(--blue); color: var(--blue); }
+.codeblock-head .btn-copy:hover { border-color: #fff; color: #fff; }
 .codeblock pre {
   margin: 0; padding: 18px 20px; overflow-x: auto;
   background: #131b2c; color: #dce5f5;
   font-family: var(--mono); font-size: .78rem; line-height: 1.7;
 }
 .codeblock pre code { font-family: inherit; }
+
+/* Rシンタックスハイライト */
+.tok-com { color: #7c89a3; font-style: italic; }
+.tok-str { color: #e6b878; }
+.tok-kw  { color: #82b4f8; font-weight: 500; }
+.tok-num { color: #9ee0c0; }
+
+/* プレーン表示（フォルダ構造など・コードではないもの） */
+.codeblock.plain {
+  border: 1px dashed var(--line); border-radius: 0; box-shadow: none;
+  margin: 18px 0 26px;
+}
+.codeblock.plain pre {
+  background: var(--paper-2); color: var(--ink-2); font-size: .76rem;
+}
 
 /* ---------- S-navi ガイド ---------- */
 .guide-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
