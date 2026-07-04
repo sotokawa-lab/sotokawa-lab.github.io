@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>準備編：なぜRで自動化するのか｜Sナビ活用ガイド｜外川研究室</title>
+<meta name="description" content="HONDAセーフティナビのデータをRで解析するための準備。データログの構造、データのコピー方法、R Studioプロジェクトの作成。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">外川研究室<span class="brand-en"> — SOTOKAWA LAB.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#news">News</a></li>
+      <li><a href="index.html#research">Research</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="snavi.html" class="active">S-Navi</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-head">
+  <p class="crumb"><a href="snavi.html">S-Navi Guide</a> / <a href="snavi-r.html">Rで解析</a> / 準備編</p>
+  <h1>準備編：<br>なぜRで自動化するのか</h1>
+  <p class="lede">Sナビのデータログの構造と、解析を始める前の準備（データのコピー・R Studioプロジェクトの作成）を解説します。</p>
+  <hr class="road">
+</header>
+
+<main class="section article" style="padding-top:56px;">
+
+  <h2>なぜRを使って自動化する必要があるか？</h2>
+  <p>
+    ここでは、Sナビのデータ抽出について、なぜRを使って自動化する必要があるかについて説明します。
+    実は、Sナビのデータログは、下記の構成でデータが格納されています。
+  </p>
+  <p><strong>メインPC（Sナビの真ん中の画面がつながっているPC）</strong></p>
+  <div class="codeblock"><pre><code>ローカルディスク（C:）　通称Cドライブ
+ └ INSPECTIONDATA
+     ├ 環境別走行体験
+     ├ 危険予測体験
+     ├ 総合学習体験
+     ├ 総合学習体験印刷データ
+     ├ 反応検査印刷データ
+     └ 運転操作課題</code></pre></div>
+
+  <p>これは総合学習体験印刷データのフォルダを開いたときの画像です。月ごとの各フォルダが格納されていることがわかります。</p>
+  <img src="img/r-why-01.png" alt="総合学習体験印刷データのフォルダ内に月別フォルダが並ぶ様子" loading="lazy">
+  <p class="caption">FIG. 1 — 月ごとのフォルダ</p>
+
+  <p>さらに、上記各フォルダをみていくと、このようにcsvデータが格納されています。</p>
+  <img src="img/r-why-02.png" alt="月別フォルダ内のcsvファイル" loading="lazy">
+  <p class="caption">FIG. 2 — フォルダ内のcsvファイル</p>
+
+  <p>さらに、csvを開くと1回計測ごとのデータが格納されていて、しかも列名が付いていません。</p>
+  <img src="img/r-why-03.png" alt="列名のないcsvデータの中身" loading="lazy">
+  <p class="caption">FIG. 3 — 列名のないcsvデータ</p>
+
+  <p>フォルダの階層は下記のようになっています。</p>
+  <div class="codeblock"><pre><code>ローカルディスク（C:）
+ └ INSPECTIONDATA
+     ├ 環境別走行体験
+     ├ 危険予測体験
+     ├ 総合学習体験
+     ├ 総合学習体験印刷データ
+     │   ├ 202204
+     │   │   ├ 20220401131105_1.csv
+     │   │   └ 20220402151406_1.csv
+     │   └ 202205
+     └ …</code></pre></div>
+
+  <p>
+    これを一つずつ開いてコピペという作業は、症例が数人だけのうちは良いかもしれませんが、
+    100人200人と増えてくると苦行です。臨床業務の合間やプライベートの時間を割いて進めるのは非常に大変で、
+    場合によっては発狂してきます……。当然ヒューマンエラーが起こる確率も上がり、漏れなどのミスにも繋がります。
+    しかも列名も付いていないので、非常に面倒な作業となります。
+  </p>
+  <p>
+    そこで、このデータの抽出・コピペ・列名付与をして、以下のようなデータセットを作るフローを
+    <strong>Rで一気に自動化</strong>しようという試みです（下記のIDと名前はモザイクを掛けています）。
+  </p>
+  <img src="img/r-why-04.png" alt="自動生成されたデータセットの例" loading="lazy">
+  <p class="caption">FIG. 4 — 完成するデータセットのイメージ</p>
+
+  <p>
+    ここまで自動化できれば、あとはデータクリーニング（測定がうまくできなかった日時のデータを除外する）をして、
+    神経心理検査のデータベースや運転評価結果のデータベース、アウトカム（運転再開可否）のデータを
+    <a href="snavi-r-matching.html">マッチングして結合</a>すれば、すべてが串刺しになったデータセットの完成です。
+  </p>
+  <img src="img/r-why-05.png" alt="各データベースをIDでマッチングする流れ" loading="lazy">
+  <p class="caption">FIG. 5 — データベースのマッチング</p>
+
+  <h2>Sナビからデータをコピーする</h2>
+  <p>
+    解析にあたって、Sナビからログデータをコピーする必要があります。
+    <strong>間違ってもSナビのPCで解析しようとはしないでください。</strong>
+  </p>
+  <p>
+    Sナビのログデータの格納場所は前述の通り、メインPCのCドライブ直下の「INSPECTIONDATA」フォルダです。
+    この<strong>INSPECTIONDATAというフォルダをまるっとコピー</strong>してください。
+  </p>
+
+  <h2>R Studioでプロジェクトを作る</h2>
+  <p>
+    R Studioで解析するにあたり、一番参考になるのは<a href="https://twitter.com/MITTI12101">@MITTI</a>さんが公開している
+    <a href="https://note.com/mitti1210/m/m8e2f02aada35">note</a>です。
+    @MITTIさんは、おそらくリハ職種の中では右に出る者はいない最強のR使いだと筆者は思っています。
+  </p>
+  <p>
+    RとR Studioのインストールが完了したら、いよいよ解析に向けてプロジェクトを作りましょう。
+    これも@MITTIさんのnote「<a href="https://note.com/mitti1210/n/nc4166e4d1cf1?magazine_key=m8e2f02aada35">【1-7】Rstudioのプロジェクトについて解説します</a>」を参考にすると手っ取り早いです。
+  </p>
+  <p>
+    プロジェクトが完成したら、「***.Rproj」（***はプロジェクト名）と同じ階層に、
+    コピーしてきた「INSPECTIONDATA」フォルダを貼り付ければ、まとめて読み込み・解析に向けた準備は完了です！
+  </p>
+
+  <p style="margin-top:44px;">
+    <a href="snavi-r-import.html">→ 次：読み込み編（各課題のRコード）</a>
+  </p>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© Sotokawa Lab., Yamagata Prefectural University of Health Sciences</span>
+    <span><a href="snavi-r.html">Rで解析</a> ・ <a href="snavi.html">S-NAVI GUIDE</a></span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

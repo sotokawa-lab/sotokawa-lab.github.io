@@ -401,6 +401,27 @@ details.archive .news-list { margin-top: 14px; border-top-color: transparent; }
   color: var(--ink-3); white-space: nowrap; text-transform: uppercase;
 }
 
+/* ---------- コードブロック ---------- */
+.codeblock { margin: 22px 0 30px; border: 1px solid var(--line); }
+.codeblock-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 14px; background: var(--paper-2); border-bottom: 1px solid var(--line);
+  font-family: var(--mono); font-size: .64rem; letter-spacing: .12em; color: var(--ink-2);
+}
+.codeblock-head a { font-family: var(--mono); }
+.codeblock-head .btn-copy {
+  cursor: pointer; border: 1px solid var(--line); background: #fff;
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .1em;
+  padding: 3px 10px; color: var(--ink-2);
+}
+.codeblock-head .btn-copy:hover { border-color: var(--blue); color: var(--blue); }
+.codeblock pre {
+  margin: 0; padding: 18px 20px; overflow-x: auto;
+  background: #131b2c; color: #dce5f5;
+  font-family: var(--mono); font-size: .78rem; line-height: 1.7;
+}
+.codeblock pre code { font-family: inherit; }
+
 /* ---------- S-navi ガイド ---------- */
 .guide-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 @media (max-width: 780px) { .guide-cards { grid-template-columns: 1fr; } }

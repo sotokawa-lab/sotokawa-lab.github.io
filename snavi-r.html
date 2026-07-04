@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SナビのデータをRで解析｜Sナビ活用ガイド｜外川研究室</title>
-<meta name="description" content="HONDAセーフティナビのデータをRで解析するための手順とコード集。データの読み込みから神経心理検査データベースとのマッチングまで。">
+<meta name="description" content="HONDAセーフティナビのデータをRで解析するための手順とコード集。データの読み込みから神経心理検査データベースとのマッチングまで。ダウンロード可能な.Rファイル付き。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -32,27 +32,45 @@
   <h1>Sナビのデータを<br>Rで解析</h1>
   <p class="lede">
     Sナビのデータを用いて研究を加速させ、自施設のデータベースとマッチングして
-    効率よく解析を実行するための手順とRコード集です。
+    効率よく解析を実行するための手順とRコード集です。すべてのコードは .R ファイルとしてダウンロードできます。
   </p>
   <hr class="road">
 </header>
 
 <main class="section article" style="padding-top:56px;">
 
-  <div class="note">
-    このコード集は現在Notionから順次移行中です。以下のリンクは現行のNotionページを開きます。
-    移行完了後は、各記事とダウンロード可能な <span style="font-family:var(--mono);font-size:.8rem;">.R</span> ファイルをこのサイトで公開します。
+  <div class="guide-cards" style="max-width:none;">
+    <a class="topic reveal" href="snavi-r-setup.html" style="display:block;color:inherit;text-decoration:none;">
+      <span class="topic-no">STEP 1</span>
+      <h3>準備編</h3>
+      <p>なぜRで自動化するのか／Sナビからデータをコピーする／R Studioでプロジェクトを作る</p>
+      <span class="en">SETUP →</span>
+    </a>
+    <a class="topic reveal" href="snavi-r-import.html" style="display:block;color:inherit;text-decoration:none;">
+      <span class="topic-no">STEP 2</span>
+      <h3>読み込み編</h3>
+      <p>運転操作課題・反応検査（4課題）・総合学習体験・危険予測体験のデータを一括読み込み</p>
+      <span class="en">IMPORT →</span>
+    </a>
+    <a class="topic reveal" href="snavi-r-matching.html" style="display:block;color:inherit;text-decoration:none;">
+      <span class="topic-no">STEP 3</span>
+      <h3>結合編</h3>
+      <p>神経心理検査データベースとIDでマッチングし、解析用データセットを完成させる</p>
+      <span class="en">JOIN →</span>
+    </a>
   </div>
 
-  <ol class="guide-toc" style="list-style:none;">
-    <li><a href="https://www.notion.so/ca17fb2b37cb48a89805508328f3c95d"><span>なぜRを使って自動化する必要があるか？</span><span class="where">Notion ↗</span></a></li>
-    <li><a href="https://www.notion.so/73bf21281ad542bd960ab6a2e12664ab"><span>Sナビからデータをコピーする</span><span class="where">Notion ↗</span></a></li>
-    <li><a href="https://www.notion.so/6f289949bc7d44dcb036d1905c25e801"><span>R Studioでプロジェクトを作る</span><span class="where">Notion ↗</span></a></li>
-    <li><a href="https://www.notion.so/b302784133f84f5cac6e4864de61ac8c"><span>Sナビのデータを読み込む：運転操作課題編</span><span class="where">Notion ↗</span></a></li>
-    <li><a href="https://www.notion.so/726778bee2ea42fa9e0bef8cb5ed5e6f"><span>Sナビのデータを読み込む：反応検査編</span><span class="where">Notion ↗</span></a></li>
-    <li><a href="https://www.notion.so/16d9ae6d626040f8996e8644c0c00475"><span>Sナビのデータを読み込む：総合学習体験編</span><span class="where">Notion ↗</span></a></li>
-    <li><a href="https://www.notion.so/bf0c4001bda049c490f4c31a3ca55d27"><span>Sナビのデータを読み込む：危険予測体験編</span><span class="where">Notion ↗</span></a></li>
-    <li><a href="https://www.notion.so/1228f2ebfbfb4bfa81d606682c010e48"><span>Sナビデータと神経心理検査データベースをマッチングする方法</span><span class="where">Notion ↗</span></a></li>
+  <h2>ダウンロード（.R / .bat ファイル一覧）</h2>
+  <ol class="guide-toc" style="list-style:none;max-width:none;">
+    <li><a href="r/read_task_shiya3.R" download><span>read_task_shiya3.R — 運転操作課題（視野3）読み込み</span><span class="where">.R ↓</span></a></li>
+    <li><a href="r/read_reaction_simple.R" download><span>read_reaction_simple.R — 単純反応検査 読み込み</span><span class="where">.R ↓</span></a></li>
+    <li><a href="r/read_reaction_selective.R" download><span>read_reaction_selective.R — 選択反応課題 読み込み</span><span class="where">.R ↓</span></a></li>
+    <li><a href="r/read_reaction_steering.R" download><span>read_reaction_steering.R — ハンドル操作課題 読み込み</span><span class="where">.R ↓</span></a></li>
+    <li><a href="r/read_reaction_attention.R" download><span>read_reaction_attention.R — 注意配分・複数作業検査 読み込み</span><span class="where">.R ↓</span></a></li>
+    <li><a href="r/read_general_learning.R" download><span>read_general_learning.R — 総合学習体験 読み込み</span><span class="where">.R ↓</span></a></li>
+    <li><a href="r/unzip_all.bat" download><span>unzip_all.bat — zipファイル一括解凍（危険予測体験用）</span><span class="where">.BAT ↓</span></a></li>
+    <li><a href="r/read_hazard.R" download><span>read_hazard.R — 危険予測体験 読み込み</span><span class="where">.R ↓</span></a></li>
+    <li><a href="r/join_neuropsych.R" download><span>join_neuropsych.R — 神経心理検査DBとのマッチング</span><span class="where">.R ↓</span></a></li>
   </ol>
 
   <div class="disclaimer">

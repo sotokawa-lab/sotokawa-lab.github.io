@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>結合編：神経心理検査データベースとのマッチング｜Sナビ活用ガイド｜外川研究室</title>
+<meta name="description" content="Sナビのデータと病院の神経心理検査データベースをIDでマッチング・結合するRコード。データクリーニングの注意点も解説。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">外川研究室<span class="brand-en"> — SOTOKAWA LAB.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#news">News</a></li>
+      <li><a href="index.html#research">Research</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="snavi.html" class="active">S-Navi</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-head">
+  <p class="crumb"><a href="snavi.html">S-Navi Guide</a> / <a href="snavi-r.html">Rで解析</a> / 結合編</p>
+  <h1>結合編：神経心理検査<br>データベースとのマッチング</h1>
+  <p class="lede">抽出したSナビのデータと、病院で記録している神経心理検査などのデータベースをマッチングして結合します。</p>
+  <hr class="road">
+</header>
+
+<main class="section article" style="padding-top:56px;">
+
+  <p>
+    ここでは、抽出したSナビのデータと、病院で記録している神経心理検査などのデータベースに格納されているデータを
+    マッチングさせて結合するRコードを紹介します。
+  </p>
+  <div class="note">
+    <strong>前提条件：</strong>Sナビの対象者の識別は「ID」列で実施されているため、神経心理検査のデータベース側にも「ID」列を作っておく必要があります。
+    Sナビデータでは列名が「ID」なのに、神経心理検査データベースでは「識別番号」などと記載されていると、マッチングにエラーが生じます。
+  </div>
+
+  <div class="codeblock">
+    <div class="codeblock-head"><span>join_neuropsych.R</span><span><a href="r/join_neuropsych.R" download>DOWNLOAD</a>　<button class="btn-copy" type="button">COPY</button></span></div>
+    <pre><code># IDが入っているカルテから集積したデータセットを用意する
+dat2&lt;-read_csv("神経心理検査が格納されている.csv")
+
+#今回はdatとdat2について、IDをkeyにしてマッチング・結合
+finaldata&lt;-left_join(dat,dat2,by=c("ID"))</code></pre>
+  </div>
+
+  <p>
+    神経心理検査データの中に実車運転評価結果や運転再開可否の項目を入れ込んでおくことで、
+    運転再開可否別に平均値や標準偏差の算出、グラフ化ができます。
+  </p>
+  <p>
+    もう一点大事なこととして、例えばAさんが総合学習体験を2回走行していると、2回分がマッチングされます
+    （1回目を①、2回目を②とすると、①と神経心理検査データ、②と神経心理検査データがそれぞれ結合され、Aさんのデータが2行存在することになります）。
+    ①が途中で気分が悪くなって中断した、検査指示の理解が甘かった、などの場合は①を削除する必要があります。
+    <strong>このデータクリーニングは、各施設で確認するしかありません。</strong>
+  </p>
+  <p>あとはお好みで。</p>
+
+  <h2>参考</h2>
+  <ul>
+    <li><a href="https://r-graph-gallery.com/">The R Graph Gallery</a> — ggplot2によるグラフ化の事例集</li>
+    <li><a href="https://www.danieldsjoberg.com/gtsummary/">gtsummary package</a> — 記述統計表の自動作成</li>
+  </ul>
+
+  <p style="margin-top:44px;">
+    <a href="snavi-r.html">← Rで解析 トップに戻る</a>
+  </p>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© Sotokawa Lab., Yamagata Prefectural University of Health Sciences</span>
+    <span><a href="snavi-r.html">Rで解析</a> ・ <a href="snavi.html">S-NAVI GUIDE</a></span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
