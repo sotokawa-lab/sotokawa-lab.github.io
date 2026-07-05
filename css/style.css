@@ -162,6 +162,41 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .hero .rise:nth-child(4) { animation-delay: .6s; }
 @keyframes rise { to { opacity: 1; transform: none; } }
 
+/* ---------- フィールドフォト（ブルーデュオトーン写真バンド） ---------- */
+.field-photo {
+  position: relative; height: 46vh; min-height: 320px; max-height: 520px;
+  overflow: hidden; background: var(--blue-deep);
+}
+.field-photo-media {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center 38%;
+  filter: grayscale(60%) contrast(1.1) brightness(.92);
+}
+.field-photo::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(18,48,99,.1) 0%, rgba(13,22,40,.88) 100%),
+    linear-gradient(90deg, rgba(18,48,99,.5) 0%, transparent 55%);
+  mix-blend-mode: multiply;
+}
+.field-photo-caption {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+  max-width: var(--maxw); margin: 0 auto; padding: 0 24px 34px;
+}
+.field-photo-caption .sec-label { color: #9db9e8; }
+.field-photo-caption p {
+  font-family: var(--serif); font-weight: 600; color: #f3f6fc;
+  font-size: clamp(1.2rem, 2.6vw, 1.7rem); letter-spacing: .04em;
+  margin: 6px 0 10px;
+}
+.field-photo-caption p.sub {
+  font-family: var(--sans); font-weight: 400; font-size: .82rem;
+  color: #c3d2ec; max-width: 42em; line-height: 1.9; letter-spacing: .02em;
+}
+@media (max-width: 640px) {
+  .field-photo { height: 56vh; }
+}
+
 /* ---------- セクション共通 ---------- */
 .section { max-width: var(--maxw); margin: 0 auto; padding: 104px 24px 0; }
 .section:last-of-type { padding-bottom: 104px; }
@@ -344,6 +379,11 @@ details.archive .news-list { margin-top: 14px; border-top-color: transparent; }
   background: var(--blue-pale); color: var(--blue);
   font-family: var(--serif); font-weight: 600; font-size: 1.5rem;
   display: flex; align-items: center; justify-content: center; letter-spacing: .05em;
+  flex-shrink: 0; overflow: hidden;
+}
+.profile-avatar.has-photo { border: 1px solid var(--line); }
+.profile-avatar.has-photo img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
 }
 .profile h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; letter-spacing: .05em; }
 .profile .romaji { font-family: var(--mono); font-size: .68rem; letter-spacing: .16em; color: var(--ink-3); text-transform: uppercase; }
