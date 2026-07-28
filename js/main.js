@@ -1,3 +1,28 @@
+// 日本語／英語切り替え（ページ内トグル。HTML側の既定値は日本語表示・英語hidden）
+(function () {
+  const STORAGE_KEY = 'labLang';
+  const btn = document.getElementById('lang-toggle');
+
+  const apply = (lang) => {
+    document.documentElement.setAttribute('data-lang', lang);
+    document.querySelectorAll('[lang="ja"]').forEach((el) => { el.hidden = lang !== 'ja'; });
+    document.querySelectorAll('[lang="en"]').forEach((el) => { el.hidden = lang !== 'en'; });
+    if (btn) btn.textContent = lang === 'ja' ? 'EN' : '日本語';
+  };
+
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved === 'en') apply('en');
+  else if (btn) btn.textContent = 'EN';
+
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-lang') === 'en' ? 'ja' : 'en';
+      localStorage.setItem(STORAGE_KEY, next);
+      apply(next);
+    });
+  }
+})();
+
 // スクロール・リビール
 const io = new IntersectionObserver((entries) => {
   entries.forEach((e) => {

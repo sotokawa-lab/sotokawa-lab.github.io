@@ -83,6 +83,14 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .nav-links a:hover, .nav-links a.active {
   color: var(--blue); border-bottom-color: var(--blue); text-decoration: none;
 }
+.lang-toggle {
+  font-family: var(--mono); font-size: .64rem; letter-spacing: .12em;
+  color: var(--ink-2); text-transform: uppercase; white-space: nowrap;
+  padding: 3px 10px; border: 1px solid var(--line); background: transparent;
+  cursor: pointer; border-radius: 2px; line-height: 1.4;
+}
+.lang-toggle:hover { color: var(--blue); border-color: var(--blue); }
+[lang][hidden] { display: none !important; }
 @media (max-width: 720px) {
   .nav-links { gap: 14px; }
   .nav-links a { font-size: .6rem; letter-spacing: .08em; }
