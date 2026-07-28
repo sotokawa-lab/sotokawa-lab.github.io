@@ -5,8 +5,8 @@
 
   const apply = (lang) => {
     document.documentElement.setAttribute('data-lang', lang);
-    document.querySelectorAll('[lang="ja"]').forEach((el) => { el.hidden = lang !== 'ja'; });
-    document.querySelectorAll('[lang="en"]').forEach((el) => { el.hidden = lang !== 'en'; });
+    document.querySelectorAll('[data-i18n="ja"]').forEach((el) => { el.hidden = lang !== 'ja'; });
+    document.querySelectorAll('[data-i18n="en"]').forEach((el) => { el.hidden = lang !== 'en'; });
     if (btn) btn.textContent = lang === 'ja' ? 'EN' : '日本語';
   };
 

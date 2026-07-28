@@ -90,7 +90,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   cursor: pointer; border-radius: 2px; line-height: 1.4;
 }
 .lang-toggle:hover { color: var(--blue); border-color: var(--blue); }
-[lang][hidden] { display: none !important; }
+[data-i18n][hidden] { display: none !important; }
 @media (max-width: 720px) {
   .nav-links { gap: 14px; }
   .nav-links a { font-size: .6rem; letter-spacing: .08em; }
